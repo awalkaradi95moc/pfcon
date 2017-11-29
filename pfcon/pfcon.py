@@ -93,7 +93,7 @@ Gd_internalvar  = {
         
         'moc': {
             'data': {
-                'addr':         'pfioh-radiology.apps.osh.massopen.cloud',
+                'addr':         '10.110.106.198:5055',
                 'baseURLpath':  '/api/v1/cmd/',
                 'status':       'undefined',
 
@@ -115,7 +115,7 @@ Gd_internalvar  = {
 
             },
             'compute': {
-                'addr':         'pman-radiology.apps.osh.massopen.cloud',
+                'addr':         '10.110.106.198:5010',
                 'baseURLpath':  '/api/v1/cmd/',
                 'status':       'undefined'
             }
@@ -208,7 +208,7 @@ Gd_internalvar  = {
         },
         'host': {
             'data': {
-                'addr':         '%PFIOH_IP:5055',
+                'addr':         '10.110.60.116:5055',
                 'baseURLpath':  '/api/v1/cmd/',
                 'status':       'undefined',
 
@@ -229,7 +229,7 @@ Gd_internalvar  = {
                 }
             },
             'compute': {
-                'addr':         '%PMAN_IP:5010',
+                'addr':         '10.110.60.116:5010',
                 'baseURLpath':  '/api/v1/cmd/',
                 'status':       'undefined'
             }
@@ -1075,6 +1075,10 @@ class StoreHandler(BaseHTTPRequestHandler):
             #######
             # Process data at remote location
             #######
+
+            #Fix for Swift
+            
+            """
             str_serviceName = d_dataRequestProcessPush['serviceName']
             str_shareDir    = d_dataRequestProcessPush['d_ret']['%s-data' % str_serviceName]['stdout']['compress']['remoteServer']['postop']['shareDir']
             str_outDirPath  = d_dataRequestProcessPush['d_ret']['%s-data' % str_serviceName]['stdout']['compress']['remoteServer']['postop']['outgoingPath']
@@ -1082,6 +1086,8 @@ class StoreHandler(BaseHTTPRequestHandler):
             # pudb.set_trace()
             d_metaCompute['container']['manager']['env']['shareDir']    = str_shareDir
             self.qprint('metaCompute = %s' % self.pp.pformat(d_metaCompute).strip(), comms = 'status')
+            """
+
             d_computeRequest   = {
                 'action':   'run',
                 'meta':     d_metaCompute
